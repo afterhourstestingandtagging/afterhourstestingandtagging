@@ -698,17 +698,6 @@ body {
     margin-left:-10rem;
   }
 
-  #why-choose-1821 .cs-content {
-    text-align: left;
-    width: 50vw;
-    min-height: 46rem;
-    padding: 4rem 3rem 4rem clamp(3rem, 8vw, 8rem);
-    align-items: flex-start;
-    justify-content: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-      url("images/Untitled_design.png") center center / cover no-repeat;
-  }
-
   #why-choose-1821 .cs-topper {
     padding-left: 0;
     padding-top: 0;
