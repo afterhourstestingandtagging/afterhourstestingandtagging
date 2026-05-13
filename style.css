@@ -100,7 +100,7 @@ section {
 }
 
 /* =========================================================
-   HEADER - FIXED / STICKY
+   HEADER - FIXED
 ========================================================= */
 
 #cs-header-108 {
@@ -216,7 +216,7 @@ section {
   justify-content: center;
   gap: clamp(3rem, 6vw, 4rem);
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 #hero-540 .cs-content {
@@ -291,6 +291,20 @@ section {
 #hero-540 .cs-background {
   position: absolute;
   inset: 0;
+  z-index: 0;
+  background-color: var(--black);
+  overflow: hidden;
+}
+
+#hero-540 .cs-video,
+#hero-540 .cs-background video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
   z-index: 1;
 }
 
@@ -300,22 +314,13 @@ section {
   display: block;
   height: 125rem;
   width: 187.5rem;
-  background: rgba(0, 0, 0, 0.7);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.35);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   top: -38.125rem;
   left: 50%;
-  z-index: 1;
+  z-index: 2;
   transform: rotate(-30deg) translateX(-50%);
-}
-
-#hero-540 .cs-background img,
-#hero-540 .cs-background video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 /* =========================================================
@@ -341,8 +346,7 @@ section {
 #why-choose-289 {
   text-align: center;
   padding: 6rem 1rem;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
   border-radius: 2rem 2rem 0 0;
   background: var(--white);
   position: relative;
@@ -1103,20 +1107,17 @@ section {
 ========================================================= */
 
 #RTsbs-577,
-#RTsbsr-577 {
+#RTsbsr-577,
+#RTsbst-577 {
   position: relative;
   background-color: var(--black);
   overflow: hidden;
-  padding: var(--sectionPadding);
+  padding: clamp(5rem, 8vw, 7rem) 1rem;
   margin: 0;
 }
 
-#RTsbst-577 {
-  position: relative;
-  background-color: transparent;
-  overflow: visible;
-  padding: var(--sectionPadding);
-  margin: 0;
+#RTsbs-577 {
+  padding-top: clamp(8rem, 10vw, 10rem);
 }
 
 #RTsbs-577 .cs-container,
@@ -1124,11 +1125,12 @@ section {
 #RTsbst-577 .cs-container {
   width: 100%;
   max-width: 80rem;
-  margin: auto;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: clamp(3rem, 7vw, 4rem);
+  justify-content: center;
+  gap: clamp(3rem, 6vw, 5rem);
   position: relative;
   z-index: 2;
 }
@@ -1137,9 +1139,8 @@ section {
 #RTsbsr-577 .cs-content,
 #RTsbst-577 .cs-content {
   text-align: left;
-  width: 100%;
+  width: 50%;
   max-width: 32.625rem;
-  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1160,9 +1161,9 @@ section {
 #RTsbs-577 .cs-text,
 #RTsbsr-577 .cs-text,
 #RTsbst-577 .cs-text {
-  margin-bottom: 1rem;
   color: var(--white);
   opacity: 0.85;
+  margin-bottom: 1rem;
 }
 
 #RTsbs-577 .cs-text:last-of-type,
@@ -1205,12 +1206,6 @@ section {
   transition: width 0.3s;
 }
 
-#RTsbs-577 .cs-button-solid:hover,
-#RTsbsr-577 .cs-button-solid:hover,
-#RTsbst-577 .cs-button-solid:hover {
-  color: var(--black);
-}
-
 #RTsbs-577 .cs-button-solid:hover:before,
 #RTsbsr-577 .cs-button-solid:hover:before,
 #RTsbst-577 .cs-button-solid:hover:before {
@@ -1222,10 +1217,12 @@ section {
 #RTsbst-577 .cs-picture {
   display: block;
   position: relative;
-  width: 100%;
-  height: 18.75rem;
+  width: 47%;
+  max-width: 38.625rem;
+  height: 33.5rem;
   overflow: visible;
   z-index: 1;
+  flex-shrink: 0;
 }
 
 #RTsbs-577 .cs-picture:before,
@@ -1234,18 +1231,17 @@ section {
   content: "";
   width: 45%;
   background: var(--primary);
-  opacity: 1;
   display: block;
   position: absolute;
-  top: -1rem;
-  bottom: -1rem;
-  left: -1rem;
+  top: -1.5rem;
+  bottom: -1.5rem;
+  left: -1.5rem;
   z-index: -1;
 }
 
 #RTsbsr-577 .cs-picture:before {
   left: auto;
-  right: -1rem;
+  right: -1.5rem;
 }
 
 #RTsbs-577 .cs-picture img,
@@ -1259,36 +1255,39 @@ section {
   z-index: 1;
 }
 
-/* Services video background - fixed */
+/* Reverse layout for RCD section */
+#RTsbsr-577 .cs-content {
+  order: -1;
+}
+
+/* Call-Out video section */
+#RTsbst-577 {
+  background-color: transparent;
+}
+
 #RTsbst-577 .cs-section-video {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 100vh;
-  z-index: -1;
+  height: 100%;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
 }
 
 #RTsbst-577 .cs-section-video video {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0;
   width: 100%;
   height: 100%;
-  min-width: 100%;
-  min-height: 100%;
   object-fit: cover;
-  object-position: center center;
-  transform: translate(-50%, -50%);
 }
 
 #RTsbst-577 .cs-section-video:after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.55);
   z-index: 1;
 }
 
@@ -1699,6 +1698,7 @@ section {
 
   #hero-540 .cs-background:before {
     top: -76.25rem;
+    background: rgba(0, 0, 0, 0.35);
     transform: rotate(-55deg) translateX(-50%);
   }
 
@@ -1811,55 +1811,6 @@ section {
     transform: rotate(45deg);
   }
 
-  #RTsbs-577 .cs-container,
-  #RTsbsr-577 .cs-container,
-  #RTsbst-577 .cs-container {
-    flex-direction: row;
-  }
-
-  #RTsbs-577 .cs-content,
-  #RTsbsr-577 .cs-content,
-  #RTsbst-577 .cs-content {
-    width: 51%;
-  }
-
-  #RTsbs-577 .cs-picture,
-  #RTsbsr-577 .cs-picture,
-  #RTsbst-577 .cs-picture {
-    width: 47vw;
-    max-width: 38.625rem;
-    height: 33.5rem;
-    margin: clamp(1.5rem, 3vw, 2rem) 0 clamp(1.5rem, 3vw, 2rem)
-      clamp(1.5rem, 3vw, 2rem);
-  }
-
-  #RTsbs-577 .cs-picture:before,
-  #RTsbst-577 .cs-picture:before {
-    top: calc(clamp(1.5rem, 3vw, 2rem) * -1);
-    bottom: calc(clamp(1.5rem, 3vw, 2rem) * -1);
-    left: calc(clamp(1.5rem, 3vw, 2rem) * -1);
-  }
-
-  #RTsbsr-577 .cs-container {
-    justify-content: flex-end;
-  }
-
-  #RTsbsr-577 .cs-content {
-    order: -1;
-  }
-
-  #RTsbsr-577 .cs-picture {
-    margin: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2rem)
-      clamp(1.5rem, 3vw, 2rem) 0;
-  }
-
-  #RTsbsr-577 .cs-picture:before {
-    top: calc(clamp(1.5rem, 3vw, 2rem) * -1);
-    bottom: calc(clamp(1.5rem, 3vw, 2rem) * -1);
-    left: auto;
-    right: calc(clamp(1.5rem, 3vw, 2rem) * -1);
-  }
-
   #footer-1390 .cs-top {
     align-items: flex-start;
   }
@@ -1915,14 +1866,6 @@ section {
 
   #steps-1171 .cs-item:after {
     right: -3rem;
-  }
-}
-
-@media only screen and (min-width: 75rem) {
-  #RTsbs-577 .cs-picture,
-  #RTsbsr-577 .cs-picture,
-  #RTsbst-577 .cs-picture {
-    width: 38.625rem;
   }
 }
 
@@ -1992,18 +1935,6 @@ section {
   #why-choose-289 .cs-check-list {
     margin-left: 0;
     margin-top: 1rem;
-  }
-
-  #RTsbs-577 .cs-container,
-  #RTsbsr-577 .cs-container,
-  #RTsbst-577 .cs-container {
-    max-width: 60rem;
-  }
-
-  #RTsbs-577 .cs-picture,
-  #RTsbsr-577 .cs-picture,
-  #RTsbst-577 .cs-picture {
-    height: 28rem;
   }
 
   #contact-1105 {
@@ -2304,6 +2235,18 @@ section {
     gap: 2rem;
   }
 
+  #RTsbs-577 .cs-content,
+  #RTsbsr-577 .cs-content,
+  #RTsbst-577 .cs-content {
+    width: 100%;
+    max-width: 100%;
+    order: initial;
+  }
+
+  #RTsbsr-577 .cs-content {
+    order: initial;
+  }
+
   #RTsbs-577 .cs-picture,
   #RTsbsr-577 .cs-picture,
   #RTsbst-577 .cs-picture {
@@ -2311,8 +2254,6 @@ section {
     max-width: 100%;
     height: auto;
     min-height: 18rem;
-    margin: 0;
-    overflow: visible;
   }
 
   #RTsbs-577 .cs-picture img,
@@ -2321,26 +2262,12 @@ section {
     position: relative;
     height: auto;
     min-height: 18rem;
-    object-fit: cover;
   }
 
   #RTsbs-577 .cs-picture:before,
   #RTsbsr-577 .cs-picture:before,
   #RTsbst-577 .cs-picture:before {
     display: none;
-  }
-
-  #RTsbs-577 .cs-content,
-  #RTsbsr-577 .cs-content,
-  #RTsbst-577 .cs-content {
-    width: 100%;
-    max-width: 100%;
-    padding: 0;
-    order: initial;
-  }
-
-  #RTsbsr-577 .cs-content {
-    order: initial;
   }
 
   #RTsbst-577 .cs-section-video {
