@@ -1104,16 +1104,28 @@ section {
 
 /* =========================================================
    SERVICES SIDE BY SIDE
+   Keeps video as fixed background and restores black panels
 ========================================================= */
 
 #RTsbs-577,
 #RTsbsr-577,
 #RTsbst-577 {
   position: relative;
-  background-color: var(--black);
-  overflow: hidden;
+  width: 100%;
+  overflow: visible;
   padding: clamp(5rem, 8vw, 7rem) 1rem;
   margin: 0;
+  z-index: 5;
+}
+
+#RTsbs-577,
+#RTsbsr-577 {
+  background-color: var(--black);
+}
+
+#RTsbst-577 {
+  background-color: transparent;
+  min-height: 42rem;
 }
 
 #RTsbs-577 {
@@ -1127,12 +1139,38 @@ section {
   max-width: 80rem;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: clamp(3rem, 6vw, 5rem);
   position: relative;
   z-index: 2;
+}
+
+#RTsbs-577 .cs-container::before,
+#RTsbsr-577 .cs-container::before,
+#RTsbst-577 .cs-container::before {
+  content: "";
+  position: absolute;
+  top: -4rem;
+  bottom: -4rem;
+  background-color: var(--black);
+  z-index: -1;
+}
+
+#RTsbs-577 .cs-container::before {
+  left: clamp(7rem, 12vw, 10rem);
+  right: calc(50% - 50vw);
+}
+
+#RTsbsr-577 .cs-container::before {
+  left: calc(50% - 50vw);
+  right: clamp(7rem, 12vw, 10rem);
+}
+
+#RTsbst-577 .cs-container::before {
+  left: clamp(7rem, 12vw, 10rem);
+  right: calc(50% - 50vw);
+  background-color: rgba(0, 0, 0, 0.92);
 }
 
 #RTsbs-577 .cs-content,
@@ -1150,6 +1188,7 @@ section {
 #RTsbsr-577 .cs-topper,
 #RTsbst-577 .cs-topper {
   color: var(--primary);
+  font-weight: 800;
 }
 
 #RTsbs-577 .cs-title,
@@ -1162,7 +1201,7 @@ section {
 #RTsbsr-577 .cs-text,
 #RTsbst-577 .cs-text {
   color: var(--white);
-  opacity: 0.85;
+  opacity: 0.9;
   margin-bottom: 1rem;
 }
 
@@ -1191,9 +1230,9 @@ section {
   transition: color 0.3s;
 }
 
-#RTsbs-577 .cs-button-solid:before,
-#RTsbsr-577 .cs-button-solid:before,
-#RTsbst-577 .cs-button-solid:before {
+#RTsbs-577 .cs-button-solid::before,
+#RTsbsr-577 .cs-button-solid::before,
+#RTsbst-577 .cs-button-solid::before {
   content: "";
   position: absolute;
   height: 100%;
@@ -1206,9 +1245,9 @@ section {
   transition: width 0.3s;
 }
 
-#RTsbs-577 .cs-button-solid:hover:before,
-#RTsbsr-577 .cs-button-solid:hover:before,
-#RTsbst-577 .cs-button-solid:hover:before {
+#RTsbs-577 .cs-button-solid:hover::before,
+#RTsbsr-577 .cs-button-solid:hover::before,
+#RTsbst-577 .cs-button-solid:hover::before {
   width: 100%;
 }
 
@@ -1225,9 +1264,9 @@ section {
   flex-shrink: 0;
 }
 
-#RTsbs-577 .cs-picture:before,
-#RTsbsr-577 .cs-picture:before,
-#RTsbst-577 .cs-picture:before {
+#RTsbs-577 .cs-picture::before,
+#RTsbsr-577 .cs-picture::before,
+#RTsbst-577 .cs-picture::before {
   content: "";
   width: 45%;
   background: var(--primary);
@@ -1239,7 +1278,7 @@ section {
   z-index: -1;
 }
 
-#RTsbsr-577 .cs-picture:before {
+#RTsbsr-577 .cs-picture::before {
   left: auto;
   right: -1.5rem;
 }
@@ -1255,39 +1294,40 @@ section {
   z-index: 1;
 }
 
-/* Reverse layout for RCD section */
 #RTsbsr-577 .cs-content {
   order: -1;
 }
 
-/* Call-Out video section */
-#RTsbst-577 {
-  background-color: transparent;
-}
-
+/* Fixed Services video background */
 #RTsbst-577 .cs-section-video {
-  position: absolute;
-  inset: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  z-index: 0;
+  height: 100vh;
+  z-index: -1;
   overflow: hidden;
   pointer-events: none;
 }
 
 #RTsbst-577 .cs-section-video video {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
   width: 100%;
   height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
+  object-position: center center;
+  transform: translate(-50%, -50%);
 }
 
-#RTsbst-577 .cs-section-video:after {
+#RTsbst-577 .cs-section-video::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 1;
 }
 
@@ -2223,8 +2263,12 @@ section {
   #RTsbsr-577,
   #RTsbst-577 {
     padding: 4rem 1rem;
-    margin: 0;
     background-color: var(--black);
+    overflow: hidden;
+  }
+
+  #RTsbs-577 {
+    padding-top: 8rem;
   }
 
   #RTsbs-577 .cs-container,
@@ -2233,6 +2277,12 @@ section {
     flex-direction: column;
     max-width: 34rem;
     gap: 2rem;
+  }
+
+  #RTsbs-577 .cs-container::before,
+  #RTsbsr-577 .cs-container::before,
+  #RTsbst-577 .cs-container::before {
+    display: none;
   }
 
   #RTsbs-577 .cs-content,
@@ -2264,9 +2314,9 @@ section {
     min-height: 18rem;
   }
 
-  #RTsbs-577 .cs-picture:before,
-  #RTsbsr-577 .cs-picture:before,
-  #RTsbst-577 .cs-picture:before {
+  #RTsbs-577 .cs-picture::before,
+  #RTsbsr-577 .cs-picture::before,
+  #RTsbst-577 .cs-picture::before {
     display: none;
   }
 
